@@ -1,42 +1,6 @@
-# Nuxt 3 Minimal Starter
+# Introduction
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Nuxt 3 체크리스트.
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Nuxt3 에서는 store 폴더가 아닌, composables 폴더에 store를 두고, `$fetch`를 사용하여 데이터를 가져올 수 있다.
+- Composable은 재사용성에서 매우 유리해보이는데, Vue 2에 익숙할 경우 굳이 당장 Composition API를 사용할 필요는 없을 듯 싶다.
