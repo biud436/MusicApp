@@ -7,6 +7,7 @@
                 </IncrementalHeader>
                 <IncrementalContent :increment="increment" :decrement="decrement" />
             </v-row>
+            <pre>{{ data }}</pre>
         </v-container>
     </main>
 </template>
@@ -16,12 +17,17 @@ import IncrementalHeader from '@/components/IncrementalHeader.vue'
 import IncrementalContent from '@/components/IncrementalContent.vue'
 export default defineComponent({
     setup() {
+        const data = ref({});
         const main = useMainStore();
         const { counter } = storeToRefs(main);
         return {
             main,
-            counter
+            counter,
+            data
         };
+    },
+    async mounted() {
+        this.data = await this.main.getData();
     },
     methods: {
         increment() {
@@ -29,7 +35,7 @@ export default defineComponent({
         },
         decrement() {
             this.main.decrement();
-        }
+        },
     },
     components: { IncrementalHeader, IncrementalContent }
 })
