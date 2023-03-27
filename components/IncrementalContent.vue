@@ -11,6 +11,7 @@
     </v-col>
 </template>
 <script>
+// Vue 2 문법을 사용한다
 export default defineComponent({
     props: {
         increment: {

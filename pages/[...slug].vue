@@ -15,6 +15,8 @@
 import { storeToRefs } from 'pinia';
 import IncrementalHeader from '@/components/IncrementalHeader.vue'
 import IncrementalContent from '@/components/IncrementalContent.vue'
+
+// Vue 2 문법을 사용한다
 export default defineComponent({
     setup() {
         const data = ref({});
