@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn-primary {
+        @apply bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 active:bg-blue-400;
+    }
+    .btn-secondary {
+        @apply bg-gray-500 text-white font-bold py-2 px-4 rounded hover:bg-gray-700 active:bg-gray-400 active:text-gray-200;
+    }
+    .btn-slate {
+        @apply bg-blue-500 text-white pa-2 rounded-md hover:bg-slate-700 active:bg-slate-400
+    }
+}

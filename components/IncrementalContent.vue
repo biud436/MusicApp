@@ -1,17 +1,10 @@
 <template>
-    <v-col :cols="12" class="justify-center">
-        <v-card>
-            <v-card-text>
-                <v-sheet class="pa-2 ma-2 bg-blue lighten-4" elevation="1">
-                    <v-btn variant="tonal" class="mx-2" @click="increment">증가</v-btn>
-                    <v-btn variant="tonal" class="mx-2" @click="decrement">감소</v-btn>
-                </v-sheet>
-            </v-card-text>
-        </v-card>
-    </v-col>
+    <div class="flex flex-row gap-8">
+        <button class="btn-primary" @click="increment">증가</button>
+        <button class="btn-secondary" @click="decrement">감소</button>
+    </div>
 </template>
 <script>
-// Vue 2 문법을 사용한다
 export default defineComponent({
     props: {
         increment: {

@@ -1,14 +1,12 @@
-import vuetify from "vite-plugin-vuetify";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    css: ["@/assets/main.scss"],
+    css: ['~/assets/css/main.pcss'],
 	build: {
-		transpile: ["vuetify"],
+		transpile: [],
 	},
     vite: {
 		ssr: {
-			noExternal: ["vuetify"],
+			noExternal: [],
 		},
 		define: {
 			"process.env.DEBUG": false,
@@ -24,12 +22,13 @@ export default defineNuxtConfig({
     modules: [
         '@nuxt/content',
         "@pinia/nuxt",
-		async (options, nuxt) => {
-			// @ts-ignore
-			nuxt.hooks.hook("vite:extendConfig", (config) => config.plugins.push(vuetify()));
-		},        
     ],
     plugins: [
-        '~/plugins/vuetify.ts'
-    ]
+    ],
+    postcss: {
+        plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+        },
+    },
 })
