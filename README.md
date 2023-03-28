@@ -16,7 +16,7 @@
 - TailwindCSS에 정의되어있는 클래스를 `@apply` at-rules를 사용하여 하나의 클래스로 병합할 수 있다.
 
 ### 예시
-`.ma-2`와 `.pa-2` 클래스는 TailwindCSS에 정의되어있지 않기 때문에 다음과 같이 추가 등록이 가능하다.
+`.ma-2`와 `.pa-2` 클래스는 TailwindCSS에 정의되어있지 않기 때문에 `@apply` at-rules를 사용할 때 다음과 같이 추가 등록을 해야 한다.
 
 ```css
 @layer utilities {
@@ -34,12 +34,12 @@
 }
 ```
 
-이렇게 하면 간단하게 클래스를 정의할 수 있다.
+이렇게 하면 간단하게 클래스를 정리할 수 있다.
 
 ```html
 <template>
     <div class="card-1">
-        <div class=" text-2xl ">
+        <div class="text-2xl ">
             <h2>Main Store </h2>
             <p class=" text-gray-500 text-sm"> (https://jsonplaceholder.typicode.com/todos/1 호출) </p>
         </div>
@@ -50,4 +50,4 @@
 </template>
 ```
 
-또한 TailwindCSS는 [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)를 설치하면 VSCode에서 자동완성을 지원한다.
+또한 TailwindCSS는 [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)를 설치하면 VSCode에서 자동 완성을 지원한다.
