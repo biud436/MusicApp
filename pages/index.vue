@@ -23,22 +23,23 @@
 import { storeToRefs } from 'pinia';
 import IncrementalHeader from '@/components/IncrementalHeader.vue'
 import IncrementalContent from '@/components/IncrementalContent.vue'
-import { useCounterStore } from '~~/composables/counter';
 import Counter from '@/components/Counter.vue';
 import User from '@/components/User.vue';
+import { useCounterStore } from '~~/composables/counter';
+import { useServerStore } from '~~/composables/server';
 
 export default defineComponent({
     setup() {
         const data = ref({});
         const isShake = ref(false);
-        const main = useMainStore();
         const counterStore = useCounterStore();
+        const serverStore = useServerStore()
 
         const { counter } = storeToRefs(counterStore);
         const targetValue = ref(100);
 
         return {
-            mainStore: main,
+            serverStore: serverStore,
             counterStore,
             counter,
             data,
@@ -47,7 +48,7 @@ export default defineComponent({
         };
     },
     async mounted() {
-        this.data = await this.mainStore.getData();
+        this.data = await this.serverStore.getData();
     },
     watch: {
         targetValue: {

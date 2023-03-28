@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const { data } = defineProps<{ data: Record<string, any> }>();
+interface UserProps {
+    data: Record<string, any>
+};
+const { data } = defineProps<UserProps>();
 
 </script>
 <template>

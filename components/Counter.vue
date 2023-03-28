@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const { targetValue } = defineProps<{ targetValue: number }>();
+interface CounterProps {
+    targetValue: number;
+}
+const { targetValue } = defineProps<CounterProps>();
 const value = ref(targetValue);
 
 </script>
