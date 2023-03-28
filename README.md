@@ -52,4 +52,6 @@
 
 또한 TailwindCSS는 [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)를 설치하면 VSCode에서 자동 완성을 지원한다.
 
-- 전세계가 열광하는 라이브러리이지만, Vuetify나 BootstrapVue와 달리 미리 정의되어있는 built-in class나 컴포넌트가 없기 때문에 `@apply` at-rules를 사용하여 커스텀 클래스를 만들어야 한다. 이는 백엔드 개발자가 빠르게 프로토타입을 구축해야 할 땐 적절하지 않을 수 있다. 초점이 로직 구성이 아닌 화면을 똑같이 보여주기에 맞춰지기 때문이다. 
+- 전세계가 열광하는 라이브러리이지만, UI 프레임워크가 아닌 CSS 프레임워크이므로 UI 프레임워크인 Vuetify나 BootstrapVue와 달리 미리 정의되어있는 built-in class나 컴포넌트가 없다. 따라서 `@apply` at-rules를 사용하여 커스텀 클래스를 만들어야 한다. 이는 백엔드 개발자가 빠르게 미리 완성되어있는 UI 컴포넌트를 끌어다가 프로토타입을 구축해야 할 땐 적절하지 않을 수 있다. 
+
+CSS 프레임워크를 사용하지 않고 UI 프레임워크를 사용하면 백엔드 개발자 입장에선 더 빨리 개발할 수 있다는 장점이 있지만, 프론트나 디자이너 입장에서는 커스텀이 용이한 CSS 프레임워크를 사용하는 것이 더 편리할 수 있다.
