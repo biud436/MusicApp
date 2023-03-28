@@ -56,7 +56,7 @@
 
 CSS 프레임워크를 사용하지 않고 UI 프레임워크를 사용하면 백엔드 개발자 입장에선 더 빨리 개발할 수 있다는 장점이 있지만, 프론트나 디자이너 입장에서는 커스텀이 용이한 CSS 프레임워크를 사용하는 것이 더 편리할 수 있다.
 
-(https://github.com/tailwindlabs/tailwindcss/blob/master/src/corePlugins.js#L679)[https://github.com/tailwindlabs/tailwindcss/blob/master/src/corePlugins.js#L679] 를 분석해보면 아래와 같은 부분이 있다.
+[https://github.com/tailwindlabs/tailwindcss/blob/master/src/corePlugins.js#L679](https://github.com/tailwindlabs/tailwindcss/blob/master/src/corePlugins.js#L679) 를 분석해보면 아래와 같은 부분이 있다.
 
 ```js
   margin: createUtilityPlugin(
