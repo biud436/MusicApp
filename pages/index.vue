@@ -14,15 +14,7 @@
                     <IncrementalContent :increment="increment" :decrement="decrement" />
                 </div>
             </div>
-            <div class="card-1">
-                <div class=" text-2xl ">
-                    <h2>Main Store </h2>
-                    <p class=" text-gray-500 text-sm"> (https://jsonplaceholder.typicode.com/todos/1 호출) </p>
-                </div>
-                <div class="bg-slate-800 text-white pa-2 rounded-md">
-                    <pre>{{ data }}</pre>
-                </div>
-            </div>
+            <User :data="data" />
             <Counter :targetValue="targetValue" />
         </div>
     </main>
@@ -33,6 +25,7 @@ import IncrementalHeader from '@/components/IncrementalHeader.vue'
 import IncrementalContent from '@/components/IncrementalContent.vue'
 import { useCounterStore } from '~~/composables/counter';
 import Counter from '@/components/Counter.vue';
+import User from '@/components/User.vue';
 
 export default defineComponent({
     setup() {
@@ -43,10 +36,6 @@ export default defineComponent({
 
         const { counter } = storeToRefs(counterStore);
         const targetValue = ref(100);
-
-        watch(counter, (newVal, oldVal) => {
-
-        });
 
         return {
             mainStore: main,
@@ -84,7 +73,6 @@ export default defineComponent({
             }, 300);
         },
     },
-    components: { IncrementalHeader, IncrementalContent, Counter }
+    components: { IncrementalHeader, IncrementalContent, Counter, User }
 })
 </script>
-<style lang="scss"></style>
