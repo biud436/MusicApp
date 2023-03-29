@@ -22,7 +22,15 @@ export default defineNuxtConfig({
     modules: [
         '@nuxt/content',
         "@pinia/nuxt",
+        'nuxt-swiper'
     ],
+    swiper: {
+        // Swiper options
+        //----------------------
+        // prefix: 'Swiper',
+        // styleLang: 'css',
+        // modules: ['navigation', 'pagination'], // all modules are imported by default
+    },
     plugins: [
     ],
     postcss: {

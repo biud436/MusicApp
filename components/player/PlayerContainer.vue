@@ -1,3 +1,6 @@
+<script setup lang="ts">
+import Skeleton from '../ui/Skeleton.vue';
+</script>
 <template>
     <div class="fixed bottom-0 left-0 w-full h-20 bg-[#191919] min-h-min text-white">
         <div class="flex flex-row h-full gap-2">
@@ -16,7 +19,7 @@
                 </div>
             </div>
             <div class="flex-grow-[2] flex items-center justify-center">
-                2
+                <Skeleton variant="circle" circle rounded animation />
             </div>
             <div class="flex-grow-[1] flex items-center justify-end mr-2">
                 3
