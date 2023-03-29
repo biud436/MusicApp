@@ -6,6 +6,6 @@
         <div class="ml-4">
             <div class="font-sans text-[#cccccc] font-sm text-md hover:text-white cursor-pointer">어진석</div>
         </div>
-        <MenuArrowDownIcon />
+        <IconArrowDown />
     </div>
 </template>

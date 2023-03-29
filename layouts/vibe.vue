@@ -2,8 +2,9 @@
 import VibeMenu from "~~/components/menu/MenuContainer.vue"
 </script>
 <template>
-    <div class="bg-black h-[100vh]">
+    <main class="bg-black h-[100vh]">
         <VibeMenu />
         <slot />
-    </div>
+        <PlayerContainer />
+    </main>
 </template>
