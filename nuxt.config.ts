@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    css: ['~/assets/css/main.pcss'],
+    css: ['~/assets/css/main.css'],
 	build: {
 		transpile: [],
 	},
@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     }, 
     app: {
         head: {
-            title: 'My Nuxt App',
+            title: 'CS',
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
         }
