@@ -28,6 +28,7 @@
     .pa-2 {
       padding: 0.5rem;
     }
+    
 }
 
 .input-form {
@@ -37,4 +38,8 @@
 .card-1 {
     @apply flex flex-col items-center gap-3 bg-gray-100 rounded-sm columns-2 ma-2 pa-2 justify-items-center;
     flex-direction: column;
+}
+
+.input-primary {
+    @apply w-5/6 py-2 pl-12 leading-tight text-white outline-none bg-[#1a1a1a] rounded-sm appearance-none focus:border-separate focus:shadow-blue-500 shadow-lg transition-all;    
 }
