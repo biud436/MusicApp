@@ -1,5 +1,8 @@
 <template>
-    <div class="sticky top-0 flex flex-col gap-2">
+    <div class="sticky top-0 flex flex-col w-full gap-2">
         <slot />
     </div>
 </template>
+<style>
+@tailwind utilities;
+</style>
