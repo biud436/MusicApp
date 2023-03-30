@@ -22,16 +22,33 @@ onMounted(() => {
 
 </script>
 <template>
-    <div class="flex flex-row items-start gap-1 mb-2 text-gray-100 justify justify-items-center">
+    <div class="flex flex-row items-center gap-3 mb-12 text-gray-100 justify">
         <div class="text-2xl">매거진</div>
         <!-- > 아이콘 -->
-        <div class="text-sm">더보기</div>
+        <div class="text-sm animate-pulse">더보기</div>
     </div>
-    <Swiper :slides-per-view="3" :space-between="30" :centered-slides="true" :navigation="true" :autoplay="{
-        delay: 2500,
-        disableOnInteraction: false,
+    <Swiper :slides-per-view="3" :space-between="30" :navigation="true" :breakpoints="{
+        320: {
+            slidesPerView: 1,
+            spaceBetween: 30,
+        },
+        480: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+        },
+        640: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+        },
+        1024: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+        },
+    }" :autoplay="{
+    delay: 2500,
+    disableOnInteraction: false,
 
-    }" :modules="[Autoplay, Pagination, Navigation]">
+}" :modules="[Autoplay, Pagination, Navigation]">
         <SwiperSlide v-for="item in slideItems" :key="item.id">
             <div class="flex flex-col items-center justify-center gap-1 text-gray-400">
                 <img :src="item.image" class="w-64 h-64" />
