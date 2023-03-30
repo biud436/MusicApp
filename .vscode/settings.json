@@ -3,4 +3,5 @@
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "Vue.volar"
     },
+    "css.lint.unknownAtRules": "ignore"
 }

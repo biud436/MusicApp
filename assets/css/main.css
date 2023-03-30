@@ -6,9 +6,18 @@
 body {
     background: black;
 }
+
 @layer base {
     h3 {
         @apply text-2xl font-bold;
+    }
+
+    .progress-hovering {
+        @apply hover:[&::-webkit-progress-value]:bg-gray-200;
+    }
+
+    .progress-not-hovering {
+        @apply [&::-webkit-progress-value]:bg-gray-600;
     }
 }
 
@@ -46,3 +55,4 @@ body {
 .input-primary {
     @apply w-5/6 py-2 pl-12 leading-tight text-white outline-none bg-[#1a1a1a] rounded-sm appearance-none focus:border-separate focus:shadow-blue-500 shadow-lg transition-all;    
 }
+

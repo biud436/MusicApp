@@ -15,4 +15,8 @@ module.exports = {
     }
   },
   plugins: [],
+  safelist: [
+    "[&::-webkit-progress-value]:bg-gray-600",
+    "hover:[&::-webkit-progress-value]:bg-gray-200"
+  ]
 }

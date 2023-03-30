@@ -32,8 +32,9 @@ import Skeleton from '../ui/Skeleton.vue';
                 <a class="text-ellipsis"><i class="transition fa-solid fa-forward-step fa-2x hover:scale-110"></i></a>
             </div>
             <div class="flex-grow-[1] flex items-center mr-2 justify-around gap-3">
-                <a class="text-ellipsis">진행바</a>
-                <a class="text-ellipsis">재생 목록</a>
+                <PlayerSoundProgressBar />
+                <a class="text-ellipsis"><i
+                        class="transition fa-solid fa-list text-slate-500 hover:text-slate-200 hover:scale-105"></i></a>
             </div>
         </div>
     </div>
