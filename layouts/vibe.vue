@@ -2,7 +2,7 @@
 import VibeMenu from "~~/components/menu/MenuContainer.vue"
 </script>
 <template>
-    <main class="bg-black h-[100vh] ">
+    <main class="h-full ">
         <div class="flex">
             <div class="flex flex-col h-[100vh] px-2 pl-3 w-2/12 ">
                 <VibeMenu />

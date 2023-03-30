@@ -3,6 +3,9 @@
 @tailwind utilities;
 @tailwind variants;
 
+body {
+    background: black;
+}
 @layer base {
     h3 {
         @apply text-2xl font-bold;
