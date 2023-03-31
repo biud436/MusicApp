@@ -9,6 +9,7 @@
             <MenuDivider />
             <MenuSearchContainer />
             <MenuDivider />
+            <MenuCategories />
         </MenuStack>
     </header>
 </template>

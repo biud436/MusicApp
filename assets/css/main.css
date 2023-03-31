@@ -3,8 +3,8 @@
 @tailwind utilities;
 @tailwind variants;
 
-body {
-    background: black;
+html {
+    background: #000;
 }
 
 @layer base {
