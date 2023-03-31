@@ -1,8 +1,12 @@
 <script setup lang="tsx">
+import { useMenuStore } from '~~/composables/menu';
 import { Category } from '~~/server/api/categories';
 
-export type CategoryNode = {
+const menuStore = useMenuStore();
+
+type CategoryNode = {
     title: string;
+    id: string;
     depth: number;
     icon: ReturnType<typeof defineComponent>;
     selected: boolean;
@@ -10,11 +14,21 @@ export type CategoryNode = {
 
 const items = ref<CategoryNode[]>([]);
 
+/**
+ * 현재 선택된 메뉴를 저장합니다.
+ * 
+ * @param param0 
+ */
+const onClickCategory = ({ id }: Pick<Category, "id">) => {
+    menuStore.selectCategory(id);
+};
+
 $fetch("/api/categories")
     .then((data) => {
         data.forEach((item: Category) => {
             return items.value.push({
                 title: item.title,
+                id: item.id,
                 depth: item.depth,
                 icon: defineComponent(() => {
                     return () => (
@@ -39,8 +53,8 @@ $fetch("/api/categories")
             <Suspense>
                 <div class="flex items-center text-gray-300 transition cursor-pointer hover:sacle-120 hover:opacity-80"
                     :class="{
-                        'text-red-500 font-bold': item.selected
-                    }">
+                        'text-red-500 font-bold': menuStore.selectedCategory === item.id
+                    }" @click="onClickCategory(item)">
                     <Component :is="item.icon" class="w-6 h-6 " />
                     <a class="ml-2">{{ item.title }}</a>
                 </div>
