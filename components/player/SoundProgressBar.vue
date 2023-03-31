@@ -31,8 +31,8 @@ const onMouseLeave = () => {
 
 </script>
 <template>
-    <div class="flex flex-row items-center justify-center w-full gap-2 py-2 transition" @mouseenter="onMouseEnter"
-        @mouseleave="onMouseLeave">
+    <div class="flex flex-row items-center justify-center w-full gap-2 py-2 transition cursor-pointer"
+        @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
         <div id="volume" class="peer/volume">
             <i class="cursor-pointer fa-solid hover:text-white" :class="{
                 'fa-volume-high': !isMuted,

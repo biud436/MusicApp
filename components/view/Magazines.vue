@@ -1,36 +1,41 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay, Pagination, Navigation } from 'swiper';
+import { Autoplay, Pagination, Navigation, SwiperOptions } from 'swiper';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 const slideItems = ref<{ id: number, title: string; description: string; image: string; }[]>();
 
 const props = defineProps<{ title: string; }>();
 
-const swiperBreakPoint = ref({
+const swiperBreakPoint = ref<{
+    [width: number]: SwiperOptions;
+    [ratio: string]: SwiperOptions;
+} | undefined>({
     320: {
         slidesPerView: 1,
-        spaceBetween: 30,
+        spaceBetween: 10,
     },
     480: {
         slidesPerView: 2,
-        spaceBetween: 40,
+        spaceBetween: 10,
     },
     640: {
         slidesPerView: 2,
-        spaceBetween: 30,
+        spaceBetween: 10,
+
     },
     1024: {
-        slidesPerView: 4,
-        spaceBetween: 30,
+        slidesPerView: 2,
+        spaceBetween: 10,
+
     },
     1280: {
-        slidesPerView: 4,
-        spaceBetween: 30,
+        slidesPerView: 2,
+        spaceBetween: 10,
     },
     1920: {
-        slidesPerView: 6,
-        spaceBetween: 30,
+        slidesPerView: 4,
+        spaceBetween: 10,
     },
 });
 
@@ -67,10 +72,12 @@ onUnmounted(() => {
         }" :modules="[Autoplay, Pagination, Navigation]" @swiper="swiper => swiperRef = swiper">
             <SwiperSlide v-for="item in slideItems" :key="item.id">
                 <div
-                    class="flex flex-col items-center justify-center gap-1 text-gray-400 cursor-pointer hover:animate-pulse">
+                    class="flex flex-col items-start justify-center gap-1 text-gray-400 cursor-pointer hover:animate-pulse">
                     <img :src="item.image" class="w-64 h-64" />
-                    <div class="text-2xl font-bold">{{ item.title }}</div>
-                    <div class="text-lg">{{ item.description }}</div>
+                    <div class="text-white text-md">{{ item.title }}</div>
+                    <div class="text-sm">{{ item.description }}</div>
+                    <div class="text-sm">{{ new Date().toLocaleDateString() }} <strong
+                            class="text-red-400 text-4xlxl">&middot;</strong></div>
                 </div>
             </SwiperSlide>
         </Swiper>
