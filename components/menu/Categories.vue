@@ -1,7 +1,6 @@
 <script setup lang="tsx">
 import { Category } from '~~/server/api/createCategories';
 
-
 export type CategoryNode = {
     title: string;
     depth: number;

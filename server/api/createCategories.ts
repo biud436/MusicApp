@@ -1,5 +1,3 @@
-
-
 export type Category = {
     title: string;
     depth: number;
