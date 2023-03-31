@@ -65,10 +65,9 @@ onUnmounted(() => {
         <div class="text-sm cursor-pointer animate-pulse">더보기</div>
     </div>
     <Suspense>
-        <Swiper :slides-per-view="3" :space-between="30" :navigation="true" :breakpoints="swiperBreakPoint" :autoplay="{
+        <Swiper :navigation="true" :breakpoints="swiperBreakPoint" :autoplay="{
             delay: 2500,
             disableOnInteraction: false,
-
         }" :modules="[Autoplay, Pagination, Navigation]" @swiper="swiper => swiperRef = swiper">
             <SwiperSlide v-for="item in slideItems" :key="item.id">
                 <div
@@ -82,9 +81,7 @@ onUnmounted(() => {
             </SwiperSlide>
         </Swiper>
         <template #fallback>
-            <div class="w-6 h-6 text-2xl text-white">
-                <i class="fa-solid fa-spinner-third animate-spin"></i>
-            </div>
+            <UiSpinner />
         </template>
     </Suspense>
 </template>
