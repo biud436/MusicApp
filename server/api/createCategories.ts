@@ -48,7 +48,7 @@ export default defineEventHandler(({context}) => {
             title: '보관함',
             depth: 1,
             icon: "fa-solid fa-heart",
-            selected: false,
+            selected: true,
         },
     ];
 
