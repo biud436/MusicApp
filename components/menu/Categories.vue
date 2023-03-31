@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import { Category } from '~~/server/api/createCategories';
+import { Category } from '~~/server/api/categories';
 
 export type CategoryNode = {
     title: string;
@@ -10,7 +10,7 @@ export type CategoryNode = {
 
 const items = ref<CategoryNode[]>([]);
 
-$fetch("/api/createCategories")
+$fetch("/api/categories")
     .then((data) => {
         data.forEach((item: Category) => {
             return items.value.push({

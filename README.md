@@ -41,9 +41,9 @@
     <div class="card-1">
         <div class="text-2xl ">
             <h2>Main Store </h2>
-            <p class=" text-gray-500 text-sm"> (https://jsonplaceholder.typicode.com/todos/1 호출) </p>
+            <p class="text-sm text-gray-500 "> (https://jsonplaceholder.typicode.com/todos/1 호출) </p>
         </div>
-        <div class="bg-slate-800 text-white pa-2 rounded-md">
+        <div class="text-white rounded-md bg-slate-800 pa-2">
             <pre>{{ data }}</pre>
         </div>
     </div>
@@ -90,3 +90,45 @@ CSS 프레임워크를 사용하지 않고 UI 프레임워크를 사용하면 �
 }
 ````
 
+## 동적 컴포넌트와 JSX/TSX
+TSX를 이용하여 메뉴를 동적으로 묘화하였다. Nuxt에서는 서버 API에서 tsx를 사용할 ㅅ 없었기 때문에, 메뉴의 메타 데이터만 반환하고 동적으로 컴포넌트를 생성하는 방식을 사용하였다.
+
+```vue
+<script setup lang="tsx">
+import { Category } from '~~/server/api/categories';
+
+export type CategoryNode = {
+    title: string;
+    depth: number;
+    icon: ReturnType<typeof defineComponent>;
+    selected: boolean;
+}
+
+const items = ref<CategoryNode[]>([]);
+
+$fetch("/api/categories")
+    .then((data) => {
+        data.forEach((item: Category) => {
+            return items.value.push({
+                title: item.title,
+                depth: item.depth,
+                icon: defineComponent(() => {
+                    return () => (
+                        <div>
+                            <i class={item.icon}></i>
+                        </div>
+                    );
+                }),
+                selected: item.selected
+            })
+        })
+
+        return items;
+    })
+    .then((items) => {
+        console.log(items);
+    })
+</script>
+```
+
+동적으로 컴포넌트를 사용할 때, JSX를 사용하여 컴포넌트 생성을 간단히 하였다. 또한 비동기이므로 `Suspense`로 래핑하여 만일의 사태에 대비하였다.
