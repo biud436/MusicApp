@@ -8,6 +8,7 @@ import VibeMenu from "~~/components/menu/MenuContainer.vue"
                 <VibeMenu />
             </div>
             <div class="flex flex-col h-[100vh] px-2 pl-3 w-3/4 sm:3/4 md:w-4/6 lg:w-4/6 xl:5/6 2xl:w-10/12">
+                <PlayerWaveformVisualization />
                 <slot />
             </div>
             <PlayerContainer />
