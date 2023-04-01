@@ -41,7 +41,7 @@ export const usePlayerStore = defineStore("player", {
             const minutes = Math.floor(this.currentTime / 60);
             const seconds = Math.floor(this.currentTime % 60);
 
-            return `${minutes}:${seconds}`;
+            return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
         },
         // 현재 재생 중인 음악의 총 재생 시간 (분:초)
         durationFormatted() {
@@ -49,9 +49,6 @@ export const usePlayerStore = defineStore("player", {
             const seconds = Math.floor(this.duration % 60);
 
             return `${minutes}:${seconds}`;
-        },
-        timeFormatted() {
-            return `${this.currentTimeFormatted} / ${this.durationFormatted}`;
         },
         albumArtUrl(): string {
             return `/images/${this.albumArt}`;
@@ -63,6 +60,18 @@ export const usePlayerStore = defineStore("player", {
         },
         togglePlay() {
             this.isPlaying = !this.isPlaying;
+        },
+        play() {
+            this.isPlaying = true;
+        },
+        pause() {
+            this.isPlaying = false;
+        },
+        setDuration(duration: number) {
+            this.duration = duration;
+        },
+        setCurrentTime(currentTime: number) {
+            this.currentTime = currentTime;
         },
         setVolume(volume: number) {
             if(volume < 0) {
