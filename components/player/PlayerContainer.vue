@@ -1,6 +1,6 @@
 <template>
-    <div class="fixed bottom-0 left-0 w-full h-20 bg-[#191919] min-h-min text-white z-40">
-        <div class="flex flex-row h-full gap-2">
+    <div class="fixed bottom-0 left-0 w-full h-20 bg-[#191919] min-h-min text-white">
+        <div class="z-40 flex flex-row h-full gap-2">
             <PlayerInformationPanel>
                 <PlayerAlbum />
                 <PlayerSongPanel />
