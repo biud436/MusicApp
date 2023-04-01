@@ -1,5 +1,9 @@
 # Introduction
 
+<p align="center">
+<img width="649" alt="image" src="https://user-images.githubusercontent.com/13586185/229289652-a69100a1-5b39-40a2-af53-06692fe47acd.png">
+</p>
+
 ## Store
 - store 폴더가 아닌, composables 폴더에 store를 생성해야 한다.
 - 전역 함수 `$fetch`를 사용하여 스토어 내에서 데이터를 가져올 수 있다.

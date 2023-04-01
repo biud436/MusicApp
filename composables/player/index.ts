@@ -48,7 +48,10 @@ export const usePlayerStore = defineStore("player", {
             const minutes = Math.floor(this.duration / 60);
             const seconds = Math.floor(this.duration % 60);
 
-            return `${minutes}:${seconds}`;
+            return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        },
+        time() {
+            return `${this.currentTimeFormatted} / ${this.durationFormatted}`;
         },
         albumArtUrl(): string {
             return `/images/${this.albumArt}`;
