@@ -1,6 +1,7 @@
 # Introduction
 
 <p align="center">
+<img width="649" alt="image" src="https://user-images.githubusercontent.com/13586185/229292109-db7b3794-a855-468f-802d-bc83a650406d.gif">
 <img width="649" alt="image" src="https://user-images.githubusercontent.com/13586185/229289652-a69100a1-5b39-40a2-af53-06692fe47acd.png">
 </p>
 
