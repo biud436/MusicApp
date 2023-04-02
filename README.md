@@ -136,3 +136,17 @@ $fetch("/api/categories")
 ```
 
 동적으로 컴포넌트를 사용할 때, JSX를 사용하여 컴포넌트 생성을 간단히 하였다. 또한 비동기이므로 `Suspense`로 래핑하여 만일의 사태에 대비하였다.
+
+## withDefaults
+
+전달 받은 프로퍼티의 기본값을 설정하려면 withDefaults 함수를 사용해야 한다.
+
+```vue
+<script setup lang="tsx">
+interface MagazineProps { title: string; }
+
+const props = withDefaults(defineProps<MagazineProps>(), {
+    title: "Untitled",
+});
+</script>
+```

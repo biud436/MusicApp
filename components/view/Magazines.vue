@@ -5,7 +5,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 const slideItems = ref<{ id: number, title: string; description: string; image: string; }[]>();
 
-const props = withDefaults(defineProps<{ title: string; }>(), {
+interface MagazineProps { title: string; }
+
+const props = withDefaults(defineProps<MagazineProps>(), {
     title: "Untitled",
 });
 
