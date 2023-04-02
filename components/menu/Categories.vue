@@ -14,38 +14,40 @@ type CategoryNode = {
 
 const items = ref<CategoryNode[]>([]);
 
-/**
- * 현재 선택된 메뉴를 저장합니다.
- * 
- * @param param0 
- */
 const onClickCategory = ({ id }: Pick<Category, "id">) => {
     menuStore.selectCategory(id);
 };
 
-$fetch("/api/categories")
-    .then((data) => {
-        data.forEach((item: Category) => {
-            return items.value.push({
-                title: item.title,
-                id: item.id,
-                depth: item.depth,
-                icon: defineComponent(() => {
-                    return () => (
-                        <div>
-                            <i class={item.icon}></i>
-                        </div>
-                    );
-                }),
-                selected: item.selected
-            })
-        })
+const fetchData = async () => {
+    const data = await $fetch("/api/categories");
 
-        return items;
-    })
-    .then((items) => {
-        console.log(items);
-    })
+    if (!data) {
+        return;
+    }
+
+    data.forEach((item: Category) => {
+        return items.value.push({
+            title: item.title,
+            id: item.id,
+            depth: item.depth,
+            icon: defineComponent(() => {
+                return () => (
+                    <div>
+                        <i class={item.icon}></i>
+                    </div>
+                );
+            }),
+            selected: item.selected
+        })
+    });
+
+    return items;
+};
+
+onMounted(() => {
+    fetchData();
+});
+
 </script>
 <template>
     <div class="flex flex-col gap-2 mt-2 text-white">
