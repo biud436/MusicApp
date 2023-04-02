@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import WaveSurfer from 'wavesurfer.js/src/wavesurfer';
 import { useEqualizerStore } from '~~/composables/equalizer';
-const equalizerStore = useEqualizerStore();
-const props = defineProps<
+
+const props = withDefaults(defineProps<
     { waveSurferRef: WaveSurfer | undefined }
->();
+>(), {
+    waveSurferRef: undefined,
+});
+const equalizerStore = useEqualizerStore();
 const EQ = equalizerStore.equalizer;
 const filters = ref<BiquadFilterNode[]>([]);
 
-watchEffect(() => {
+const createBiauadFilter = () => {
     filters.value = EQ.map((band) => {
         const filter = props.waveSurferRef?.backend.getAudioContext().createBiquadFilter()!;
 
@@ -19,9 +22,11 @@ watchEffect(() => {
 
         return filter;
     });
+};
 
+const setFilters = () => {
     props.waveSurferRef?.backend.setFilters(filters.value);
-});
+};
 
 const onChange = (e: Event, filter: BiquadFilterNode | undefined) => {
     if (!filter) return;
@@ -35,6 +40,11 @@ const onLoad = (input: Event) => {
         height: '150px'
     });
 };
+
+watchEffect(() => {
+    createBiauadFilter();
+    setFilters();
+});
 
 </script>
 <template>
