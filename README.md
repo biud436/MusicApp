@@ -94,15 +94,23 @@ CSS 프레임워크를 사용하지 않고 UI 프레임워크를 사용하면 �
 }
 ````
 
-## 동적 컴포넌트와 JSX/TSX
-TSX를 이용하여 메뉴를 동적으로 묘화하였다. Nuxt에서는 서버 API에서 tsx를 사용할 수 없었기 때문에, 메뉴의 메타 데이터만 반환하고 동적으로 컴포넌트를 생성하는 방식을 사용하였다.
+## JSX/TSX 그리고 SSR, ISR, SSG
+리액트에서는 서버에서 ReactDOMServer.renderToString()을 사용하여 JSX를 문자열로 변환한 후 클라이언트로 전달한다. TSX를 사용하면 이와 유사한 작업이 진행되는 것으로 추측할 수 있다. 다만 클라이언트 컴포넌트와 서버 컴포넌트의 구분이 모호한데, 메뉴를 동적으로 묘화하려고 처음에는 Nuxt의 서버 API에서 tsx 파일을 생성하여 작업하였지만, 서버 API는 말그대로 Node.js 환경의 서버를 말하는 것으로 tsx 파일은 호환되지 않았다. 
+
+이같은 작업을 하면서 Nuxt에서는 `<ClientOnly>`라는 클라이언트 전용 컴포넌트를 만들 수 있는 기능이 존재한다는 것을 알게 되었다. Next 13의 `use client`와 유사한 걸로 추측된다. 필자는 서버에서 카테고리 데이터를 수신하여 메뉴의 메타 데이터만 받아서고 동적으로 컴포넌트를 생성하는 방식을 취하였다. 이러한 방식을 도입한 이유는 본래 메뉴는 정적인 데이터가 아니라 동적으로 생성되어야 하는 데이터이기 때문이다. 
+
+즉, `$fetch`는 Life Cycle에서 created 전단계라고 하는데, 이때 $fetch를 사용하였으므로 동적으로 데이터가 생성된다는 것을 유추할 수 있다. 따라서 컴파일러는 이것을 서버 컴포넌트로 유추하게 될 것으로 추측된다. 하지만 카테고리 데이터는 초기 렌더링 값과 동일하므로 정적인 컴포넌트로 반환되는 것이 더 효율적이다. 이러한 판단을 Nuxt.js에서 어떻게 하는지는 아직 파악하지 못했다. 
 
 ```vue
 <script setup lang="tsx">
+import { useMenuStore } from '~~/composables/menu';
 import { Category } from '~~/server/api/categories';
 
-export type CategoryNode = {
+const menuStore = useMenuStore();
+
+type CategoryNode = {
     title: string;
+    id: string;
     depth: number;
     icon: ReturnType<typeof defineComponent>;
     selected: boolean;
@@ -110,36 +118,48 @@ export type CategoryNode = {
 
 const items = ref<CategoryNode[]>([]);
 
-$fetch("/api/categories")
-    .then((data) => {
-        data.forEach((item: Category) => {
-            return items.value.push({
-                title: item.title,
-                depth: item.depth,
-                icon: defineComponent(() => {
-                    return () => (
-                        <div>
-                            <i class={item.icon}></i>
-                        </div>
-                    );
-                }),
-                selected: item.selected
-            })
-        })
+const onClickCategory = ({ id }: Pick<Category, "id">) => {
+    menuStore.selectCategory(id);
+};
 
-        return items;
-    })
-    .then((items) => {
-        console.log(items);
-    })
+const fetchData = async () => {
+    const data = await $fetch("/api/categories");
+
+    if (!data) {
+        return;
+    }
+
+    data.forEach((item: Category) => {
+        return items.value.push({
+            title: item.title,
+            id: item.id,
+            depth: item.depth,
+            icon: defineComponent(() => {
+                return () => (
+                    <div>
+                        <i class={item.icon}></i>
+                    </div>
+                );
+            }),
+            selected: item.selected
+        })
+    });
+
+    return items;
+};
+
+onMounted(() => {
+    fetchData();
+});
+
 </script>
 ```
 
-동적으로 컴포넌트를 사용할 때, JSX를 사용하여 컴포넌트 생성을 간단히 하였다. 또한 비동기이므로 `Suspense`로 래핑하여 만일의 사태에 대비하였다.
+동적으로 컴포넌트를 사용할 때, JSX를 사용하여 컴포넌트 생성을 간단히 하였다. 또한 비동기이므로 `Suspense`로 래핑하여, 데이터가 수신될 때 까지 `#fallback`으로 Spinner 등을 보여줘야 한다. onMounted() 밖에서 호출하면 created 전에 데이터가 준비되는 것으로 추측할 수 있고, onMounted 안에서 호출하면 created 후에 데이터가 준비되는 것으로 추측할 수 있다. 즉, 클라이언트 전용 컴포넌트로 동작하게 되는 것으로 추정을 해볼 수 있다.
 
 ## withDefaults
 
-전달 받은 프로퍼티의 기본값을 설정하려면 withDefaults 함수를 사용해야 한다.
+`defineProps` 함수에는 default 값을 설정할 수 없었기 때문에, `defineProps` 함수를 사용하여 프로퍼티를 정의한 후, `withDefaults` 함수를 사용하여 기본값을 설정해야 한다.
 
 ```vue
 <script setup lang="tsx">
@@ -150,3 +170,5 @@ const props = withDefaults(defineProps<MagazineProps>(), {
 });
 </script>
 ```
+
+이때 취할 수 있는 가장 깔끔한 코드는 위와 같다.
