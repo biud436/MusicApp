@@ -34,6 +34,8 @@ export const usePlayerStore = defineStore("player", {
         } as PlayerMetadata,
         // 앨범 이미지
         albumArt: "" as PlayerInfo["albumArt"],
+        // 현재 재생 음악
+        currentMusic: 'https://wavesurfer-js.org/example/media/demo.wav',
     }),
     getters: {
         // 현재 재생 중인 음악의 재생 시간 (분:초)

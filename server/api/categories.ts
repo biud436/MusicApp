@@ -40,7 +40,7 @@ export default defineEventHandler(({context}) => {
             selected: false,
         },
         {
-            title: 'VIBE MAG',
+            title: 'SpaceSound MAG',
             id: uuidv4(),
             depth: 1,
             icon: "fa-solid fa-clipboard-list",

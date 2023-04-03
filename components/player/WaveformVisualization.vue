@@ -2,13 +2,14 @@
 import WaveSurfer from 'wavesurfer.js';
 import { usePlayerStore } from '~~/composables/player';
 import PlayerEqualizer from '~~/components/player/Equalizer.vue';
+import { storeToRefs } from 'pinia';
 
 const { $waveSurfer } = useNuxtApp();
 const waveform = ref<HTMLElement>();
 const wavesurfer = ref<WaveSurfer>();
 
-const currentMusic = ref('https://wavesurfer-js.org/example/media/demo.wav');
 const playerStore = usePlayerStore();
+const { currentMusic } = storeToRefs(playerStore);
 
 const createWaveSurfer = () => {
     try {
@@ -87,7 +88,9 @@ onUnmounted(() => {
 <template>
     <section class="flex flex-col w-full gap-4 p-6 text-white">
         <div class="text-2xl cursor-pointer select-none hover:underline">현재 재생 중인 음악</div>
-        <div class="flex flex-col rounded-xl bg-[url('/api/images/758')] bg-no-repeat bg-center bg-cover">
+        <div class="relative flex flex-col rounded-xl" id="waveform-background">
+            <div class="absolute inset-0 w-full bg-black opacity-20"></div>
+            <img src="/api/images/758" class="absolute w-fit h-[100%]" />
             <!-- 사운드 파형 분석 -->
             <div ref="waveform" class="top-0 h-full z-2">
             </div>
