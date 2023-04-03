@@ -75,6 +75,10 @@ const formatTime = (time: number) => {
     return `${minutes.toString().padStart(2, "0")}분 ${seconds.toString().padStart(2, "0")}초`;
 }
 
+const totalTime = computed(() => {
+    return formatTime(playlist.reduce((a, b) => a + b.duration, 0));
+});
+
 const play = (item: PlayerInfo) => {
     const { metadata } = item;
     playerStore.play({
@@ -95,7 +99,7 @@ const play = (item: PlayerInfo) => {
         </div>
         <div class="flex flex-col items-end justify-end gap-4">
             <span class="text-sm text-white">
-                총 재생 길이: {{ formatTime(playlist.reduce((a, b) => a + b.duration, 0)) }}
+                총 재생 길이: {{ totalTime }}
             </span>
         </div>
         <div class="flex flex-col gap-2">
