@@ -73,6 +73,12 @@ export const usePlayerStore = defineStore("player", {
         pause() {
             this.isPlaying = false;
         },
+        mute() {
+            this.isMute = true;
+        },
+        unmute() {
+            this.isMute = false;
+        },
         setDuration(duration: number) {
             this.duration = duration;
         },

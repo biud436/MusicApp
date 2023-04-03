@@ -34,6 +34,18 @@ const onMouseLeave = () => {
     isHover.value = false;
 };
 
+const onClickMute = () => {
+    isMuted.value = !isMuted.value;
+
+    if (isMuted.value) {
+        playerStore.setVolume(0);
+        playerStore.mute();
+    } else {
+        playerStore.setVolume(current.value);
+        playerStore.unmute();
+    }
+};
+
 </script>
 <template>
     <div class="flex flex-row items-center justify-center w-full gap-2 py-2 transition cursor-pointer"
@@ -44,7 +56,7 @@ const onMouseLeave = () => {
                 'fa-volume-mute': isMuted,
                 'text-white': isHover,
                 'text-gray-500': !isHover
-            }"></i>
+            }" @click="onClickMute"></i>
         </div>
         <progress
             class="w-full h-1 [&::-webkit-progress-value]:bg-gray-600 peer-hover/volume:[&::-webkit-progress-value]:bg-gray-200 transition"
