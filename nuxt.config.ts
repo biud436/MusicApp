@@ -28,7 +28,8 @@ export default defineNuxtConfig({
         '@nuxt/content',
         "@pinia/nuxt",
         '@nuxt/ui',
-        'nuxt-swiper'
+        'nuxt-swiper',
+        '@vueuse/nuxt'
     ],
     swiper: {
         // Swiper options

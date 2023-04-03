@@ -2,18 +2,20 @@
   
 <script setup lang="ts">
 import { useModalStore } from '~~/composables/modal';
-
+import { onClickOutside } from '@vueuse/core'
+const el = ref()
 const modalStore = useModalStore();
+
+onClickOutside(el, () => modalStore.close());
 
 </script>
 <template>
     <Transition name="slide-fade">
 
-        <div class="fixed top-0 left-0 z-40 flex items-center justify-center w-full h-full" v-if="modalStore.isOpen"
-            v-on-click-outside="modalStore.close">
+        <div class="fixed top-0 left-0 z-40 flex items-center justify-center w-full h-full" v-if="modalStore.isOpen">
             <div class="absolute z-0 w-full h-full bg-gray-900 opacity-75 pointer-events-none"></div>
 
-            <div class="z-10 w-1/3 text-xl text-white rounded-lg border-gray-600/50 bg-black/60 border-1">
+            <div class="z-10 w-1/3 text-xl text-white rounded-lg border-gray-600/50 bg-black/60 border-1" ref="el">
                 <div class="flex flex-row items-center justify-between">
                     <div class="px-4 text-left ">
                         <MenuBrandLogo />

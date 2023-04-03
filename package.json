@@ -18,6 +18,8 @@
     "@types/node": "^18.15.10",
     "@types/uuid": "^9.0.1",
     "@types/wavesurfer.js": "^6.0.3",
+    "@vueuse/components": "^9.13.0",
+    "@vueuse/core": "^9.13.0",
     "autoprefixer": "^10.4.14",
     "nuxt-swiper": "^1.0.1",
     "pinia": "^2.0.33",
