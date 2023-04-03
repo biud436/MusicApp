@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { PlayerInfo } from '~~/composables/player';
+import { useModalStore } from '~~/composables/modal';
+import { PlayerInfo, usePlayerStore } from '~~/composables/player';
+
+const playerStore = usePlayerStore();
+const modalStore = useModalStore();
 
 const playlist: PlayerInfo[] = [
     {
@@ -12,7 +16,7 @@ const playlist: PlayerInfo[] = [
             name: "Lose Yourself",
             artist: "Eminem"
         },
-        albumArt: "/api/images/400"
+        albumArt: "400"
     },
     {
         currentTime: 120,
@@ -24,7 +28,7 @@ const playlist: PlayerInfo[] = [
             name: "Bohemian Rhapsody",
             artist: "Queen"
         },
-        albumArt: "/api/images/888"
+        albumArt: "888"
     },
     {
         currentTime: 180,
@@ -36,7 +40,7 @@ const playlist: PlayerInfo[] = [
             name: "Thriller",
             artist: "Michael Jackson"
         },
-        albumArt: "/api/images/889"
+        albumArt: "889"
     },
     {
         currentTime: 60,
@@ -48,7 +52,7 @@ const playlist: PlayerInfo[] = [
             name: "Hotel California",
             artist: "The Eagles"
         },
-        albumArt: "/api/images/890"
+        albumArt: "890"
     },
     {
         currentTime: 240,
@@ -60,7 +64,7 @@ const playlist: PlayerInfo[] = [
             name: "Yesterday",
             artist: "The Beatles"
         },
-        albumArt: "/api/images/891"
+        albumArt: "892"
     }
 ];
 
@@ -69,6 +73,17 @@ const formatTime = (time: number) => {
     const seconds = Math.floor(time % 60);
 
     return `${minutes.toString().padStart(2, "0")}분 ${seconds.toString().padStart(2, "0")}초`;
+}
+
+const play = (item: PlayerInfo) => {
+    const { metadata } = item;
+    playerStore.play({
+        name: metadata.name,
+        artist: metadata.artist,
+    },
+        item.albumArt);
+
+    modalStore.close();
 }
 
 </script>
@@ -85,9 +100,9 @@ const formatTime = (time: number) => {
         </div>
         <div class="flex flex-col gap-2">
             <div v-for="item in playlist" :key="item.metadata.name"
-                class="flex flex-row gap-4 cursor-pointer hover:bg-slate-700">
+                class="flex flex-row gap-4 cursor-pointer hover:bg-slate-700" @click="play(item)">
                 <div class="flex flex-col justify-center">
-                    <img :src="item.albumArt" class="w-16 h-16 rounded-lg" />
+                    <img :src="'/api/images/' + item.albumArt" class="w-16 h-16 rounded-lg" />
                 </div>
                 <div class="flex flex-col justify-center">
                     <div class="text-xl text-white">

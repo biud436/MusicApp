@@ -33,7 +33,7 @@ export const usePlayerStore = defineStore("player", {
             artist: "Michael Jackson",
         } as PlayerMetadata,
         // 앨범 이미지
-        albumArt: "" as PlayerInfo["albumArt"],
+        albumArt: "892" as PlayerInfo["albumArt"],
         // 현재 재생 음악
         currentMusic: 'https://wavesurfer-js.org/example/media/demo.wav',
     }),
@@ -56,7 +56,7 @@ export const usePlayerStore = defineStore("player", {
             return `${this.currentTimeFormatted} / ${this.durationFormatted}`;
         },
         albumArtUrl(): string {
-            return `/images/${this.albumArt}`;
+            return `${this.albumArt}`;
         },
         volumePercentage(): number {
             return this.volume * 100;
@@ -69,8 +69,16 @@ export const usePlayerStore = defineStore("player", {
         togglePlay() {
             this.isPlaying = !this.isPlaying;
         },
-        play() {
+        play(metadata?: PlayerMetadata, albumArt?: string) {
             this.isPlaying = true;
+
+            if(metadata) {
+                this.metadata = metadata;
+            }
+
+            if(albumArt) {
+                this.albumArt = albumArt;
+            }
         },
         pause() {
             this.isPlaying = false;
