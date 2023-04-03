@@ -16,6 +16,7 @@ import SpaceSoundMenu from "~~/components/menu/MenuContainer.vue"
             <UiModal>
                 <PlayerPlayList />
             </UiModal>
+            <!-- <DebugCaptureElement /> -->
         </div>
     </main>
 </template>
