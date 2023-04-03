@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { usePlayerStore } from '~~/composables/player';
 
-const current = ref(60);
+const playerStore = usePlayerStore();
+
+const current = ref(playerStore.volumePercentage);
 const max = 100;
 const isMuted = ref(false);
 const isHover = ref(false);
@@ -19,6 +22,8 @@ const onClick = (e: MouseEvent) => {
     const newProgress = Math.round((clickPosition / progressBarWidth) * 100)
 
     current.value = newProgress;
+
+    playerStore.setVolume(newProgress);
 };
 
 const onMouseEnter = () => {

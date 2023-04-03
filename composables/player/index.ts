@@ -55,6 +55,9 @@ export const usePlayerStore = defineStore("player", {
         },
         albumArtUrl(): string {
             return `/images/${this.albumArt}`;
+        },
+        volumePercentage(): number {
+            return this.volume * 100;
         }
     },
     actions: {

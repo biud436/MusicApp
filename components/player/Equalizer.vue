@@ -53,8 +53,8 @@ watchEffect(() => {
             이퀄라이저
         </div>
         <div
-            class="flex flex-row justify-center w-full h-full gap-1 p-3 rounded-md bg-gradient-to-br from-sky-400 via-violet-600 to-blue-700 bg-opacity-60">
-            <div v-for="filter in filters" :key="filter?.frequency.value">
+            class="inset-0 flex flex-row justify-center w-full h-full gap-1 p-3 rounded-md bg-gradient-to-br from-sky-400/60 via-violet-600/60 to-blue-700/60">
+            <div v-for=" filter in filters" :key="filter?.frequency.value">
                 <input class="w-12 bg-white" type="range" orient="vertical" min="-40" max="40" :value="filter?.gain.value"
                     @input="onChange($event, filter)" @change="onChange($event, filter)" @load="onLoad($event)" />
                 <p class="text-sm text-center text-white">{{ filter?.frequency.value.toString().replace("000", "K") }}</p>

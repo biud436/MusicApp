@@ -29,7 +29,6 @@ const createWaveSurfer = () => {
         wavesurfer.value.load(currentMusic.value);
         wavesurfer.value.on('ready', function () {
             wavesurfer.value?.play();
-            playerStore.play();
         });
         wavesurfer.value.on("finish", function () {
             playerStore.pause();
@@ -64,6 +63,17 @@ const createWaveSurfer = () => {
     }
 };
 
+watch(playerStore, (store) => {
+    if (store.isPlaying) {
+        wavesurfer.value?.play();
+    } else {
+        wavesurfer.value?.pause();
+    }
+});
+
+watch(playerStore, (store) => {
+    wavesurfer.value?.setVolume(store.volume);
+});
 
 onMounted(() => {
     createWaveSurfer();
@@ -86,6 +96,5 @@ onUnmounted(() => {
             </div>
         </div>
         <Component :is="PlayerEqualizer" :wave-surfer-ref="wavesurfer" v-if="wavesurfer" />
-        <!-- <PlayerEqualizer :wave-surfer-ref="wavesurfer" /> -->
     </section>
 </template>

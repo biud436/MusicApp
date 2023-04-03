@@ -12,6 +12,7 @@
                 <PlayerForward />
             </PlayerPanel>
             <PlayerVolumePanel>
+                <PlayerDuration />
                 <PlayerSoundProgressBar />
                 <PlayerPlayList />
             </PlayerVolumePanel>
