@@ -1,4 +1,103 @@
+<script setup lang="ts">
+import { PlayerInfo } from '~~/composables/player';
+
+const playlist: PlayerInfo[] = [
+    {
+        currentTime: 0,
+        duration: 300,
+        isPlaying: false,
+        volume: 50,
+        isMute: false,
+        metadata: {
+            name: "Lose Yourself",
+            artist: "Eminem"
+        },
+        albumArt: "/api/images/400"
+    },
+    {
+        currentTime: 120,
+        duration: 240,
+        isPlaying: true,
+        volume: 70,
+        isMute: false,
+        metadata: {
+            name: "Bohemian Rhapsody",
+            artist: "Queen"
+        },
+        albumArt: "/api/images/888"
+    },
+    {
+        currentTime: 180,
+        duration: 270,
+        isPlaying: true,
+        volume: 80,
+        isMute: false,
+        metadata: {
+            name: "Thriller",
+            artist: "Michael Jackson"
+        },
+        albumArt: "/api/images/889"
+    },
+    {
+        currentTime: 60,
+        duration: 180,
+        isPlaying: true,
+        volume: 60,
+        isMute: false,
+        metadata: {
+            name: "Hotel California",
+            artist: "The Eagles"
+        },
+        albumArt: "/api/images/890"
+    },
+    {
+        currentTime: 240,
+        duration: 300,
+        isPlaying: false,
+        volume: 40,
+        isMute: true,
+        metadata: {
+            name: "Yesterday",
+            artist: "The Beatles"
+        },
+        albumArt: "/api/images/891"
+    }
+];
+
+const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+
+    return `${minutes.toString().padStart(2, "0")}분 ${seconds.toString().padStart(2, "0")}초`;
+}
+
+</script>
 <template>
-    <a class="text-ellipsis"><i
-            class="transition fa-solid fa-list text-slate-500 hover:text-slate-200 hover:scale-105"></i></a>
+    <div class="flex flex-col gap-4">
+        <div class="p-1 text-2xl text-white rounded-lg bg-slate-700">
+            <i class="fa-solid fa-music"></i>
+            재생 목록 (총 {{ playlist.length }}곡)
+        </div>
+        <div class="flex flex-col items-end justify-end gap-4">
+            <span class="text-sm text-white">
+                총 재생 길이: {{ formatTime(playlist.reduce((a, b) => a + b.duration, 0)) }}
+            </span>
+        </div>
+        <div class="flex flex-col gap-2">
+            <div v-for="item in playlist" :key="item.metadata.name"
+                class="flex flex-row gap-4 cursor-pointer hover:bg-slate-700">
+                <div class="flex flex-col justify-center">
+                    <img :src="item.albumArt" class="w-16 h-16 rounded-lg" />
+                </div>
+                <div class="flex flex-col justify-center">
+                    <div class="text-xl text-white">
+                        {{ item.metadata.name }}
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        {{ item.metadata.artist }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

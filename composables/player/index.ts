@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-interface PlayerInfo {
+export interface PlayerInfo {
     currentTime: number;
     duration: number;
     isPlaying: boolean;
@@ -10,7 +10,7 @@ interface PlayerInfo {
     albumArt: string;
 }
 
-interface PlayerMetadata {
+export interface PlayerMetadata {
     name: string;
     artist: string;
 }

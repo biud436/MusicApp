@@ -89,12 +89,12 @@ onUnmounted(() => {
     <section class="flex flex-col w-full gap-4 p-6 text-white">
         <div class="text-2xl cursor-pointer select-none hover:underline">현재 재생 중인 음악</div>
         <div class="relative flex flex-col rounded-xl" id="waveform-background">
-            <div class="absolute inset-0 w-full bg-black opacity-20"></div>
-            <img src="/api/images/758" class="absolute w-fit h-[100%]" />
+            <div class="absolute inset-0 overflow-x-hidden bg-black opacity-20"></div>
+            <img src="/api/images/758" class="absolute w-fit h-[100%] " />
             <!-- 사운드 파형 분석 -->
             <div ref="waveform" class="top-0 h-full z-2">
             </div>
-            <div class="flex flex-col self-end gap-2 p-1 text-sm text-white">
+            <div class="flex flex-col self-end gap-2 p-1 text-sm text-white ">
                 <span>{{ playerStore.time }}</span>
             </div>
         </div>

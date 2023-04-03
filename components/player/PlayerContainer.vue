@@ -14,7 +14,7 @@
             <PlayerVolumePanel>
                 <PlayerDuration />
                 <PlayerSoundProgressBar />
-                <PlayerPlayList />
+                <PlayerPlayListLink />
             </PlayerVolumePanel>
         </div>
     </div>

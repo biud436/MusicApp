@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import SpaceSoundMenu from "~~/components/menu/MenuContainer.vue"
+
 </script>
 <template>
     <main class="container h-full mx-auto">
@@ -12,6 +13,9 @@ import SpaceSoundMenu from "~~/components/menu/MenuContainer.vue"
                 <slot />
             </div>
             <PlayerContainer />
+            <UiModal>
+                <PlayerPlayList />
+            </UiModal>
         </div>
     </main>
 </template>

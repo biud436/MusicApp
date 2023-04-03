@@ -2,6 +2,7 @@
 
 <p align="center">
 <img width="649" alt="image" src="https://user-images.githubusercontent.com/13586185/229292109-db7b3794-a855-468f-802d-bc83a650406d.gif">
+<img width="649" alt="image" src="https://user-images.githubusercontent.com/13586185/229433246-1f9b36b6-dd7d-42b5-a429-893d1f2ae59d.gif">
 </p>
 
 ## Store
