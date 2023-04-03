@@ -29,8 +29,8 @@ export const usePlayerStore = defineStore("player", {
         isMute: false as PlayerInfo["isMute"],
         // 현재 음악 메타 정보
         metadata: {
-            name: "Untitled",
-            artist: "Unknown",
+            name: "Thriller",
+            artist: "Michael Jackson",
         } as PlayerMetadata,
         // 앨범 이미지
         albumArt: "" as PlayerInfo["albumArt"],

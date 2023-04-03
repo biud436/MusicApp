@@ -76,7 +76,7 @@ const formatTime = (time: number) => {
     <div class="flex flex-col gap-4">
         <div class="p-1 text-2xl text-white rounded-lg bg-slate-700">
             <i class="fa-solid fa-music"></i>
-            재생 목록 (총 {{ playlist.length }}곡)
+            재생 목록 <span class="inline text-md xs:hidden md:inline xl:inline">(총 {{ playlist.length }}곡)</span>
         </div>
         <div class="flex flex-col items-end justify-end gap-4">
             <span class="text-sm text-white">
