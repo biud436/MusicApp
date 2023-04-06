@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 definePageMeta({
-    layout: "space-sound",
+    layout: "main",
 })
 </script>
 <template>
