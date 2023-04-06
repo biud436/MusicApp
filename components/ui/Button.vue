@@ -7,6 +7,9 @@ interface ButtonProps {
 const { text, variant } = defineProps<ButtonProps>();
 const buttonRef = ref<HTMLButtonElement>(null!);
 
+/**
+ * DOM 직접 접근 테스트
+ */
 class ButtonRippleEffect {
     static UNMOUNTED = 1000;
 
